@@ -122,23 +122,7 @@ function dispalyGreetings(today){
     }
 
 
-    function dispalyClock(today) {
-
-        var hour = padZeros(twelveHour(today.getHours()));
-        var minutes = padZeros(today.getMinutes());
-        var seconds = padZeros(today.getSeconds());
-       
-        if(today.getHours() >=12){
-            seconds+=" pm"
-        }
-        else{
-            seconds+=" am"
-        }
-       
-        document.getElementById('hour').innerHTML = hour;
-        document.getElementById('min').innerHTML = minutes;
-        document.getElementById('sec').innerHTML = seconds;
-    }
+    
 
     function twelveHour(hour) {
         if (hour > 12) {
@@ -160,7 +144,6 @@ function dispalyGreetings(today){
         var today = new Date();
         dispalyGreetings(today);
         dispalyDate(today);
-        dispalyClock(today);
         setTimeout(dispalyWidget, 500);
     }
 
