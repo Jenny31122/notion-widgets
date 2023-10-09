@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .caja {
+    width: 115px;
+    height: 158px;
+    border: 1px solid #728C69;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    padding: 10px;
+  }
+  .titulo {
+    font-family: serif;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  .contenido {
+    font-family: serif;
+    font-style: italic;
+    font-size: 10px;
+  }
+</style>
+</head>
+<body>
+  <div class="caja">
+    <div class="titulo">La Vida</div>
+    <div class="contenido">La vida es bella o triste, solo depende de cómo la queremos ver.</div>
+  </div>
+</body>
+</html>
