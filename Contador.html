@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <title>Días Juntos</title>
     <style>
-        .widget-container {
-            background-color: #fcecec;
-            border-radius: 10px;
-            padding: 20px;
+        body {
+            font-family: serif;
             text-align: center;
         }
 
-        .title {
-            font-family: serif;
-            font-size: 24px;
+        .widget {
+            background-color: #fcecec;
+            border-radius: 15px;
+            padding: 10px;
+            display: inline-block;
+        }
+
+        .heart-container {
+            text-align: center;
         }
 
         .heart {
+            font-size: 40px;
             color: #d44f48;
+            display: inline-block;
+            transform: rotate(-45deg);
+            margin-right: 10px;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-weight: bold;
             font-size: 24px;
         }
 
         .days {
             font-size: 36px;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="widget-container">
-        <p class="title">Días Juntos</p>
-        <p class="heart">💕</p>
-        <p class="days" id="days-counter"></p>
+    <div class="widget">
+        <div class="heart-container">
+            <span class="heart">❤️</span>
+            <span class="heart">❤️</span>
+        </div>
+        <div class="title">Días Juntos</div>
+        <div class="days">1567</div>
     </div>
-
-    <script>
-        function countDays() {
-            var startDate = new Date("July 19, 2019");
-            var currentDate = new Date();
-            var timeDiff = Math.abs(currentDate - startDate);
-            var days = Math.ceil(timeDiff / (1000 * 3600 * 24));
-            document.getElementById("days-counter").innerHTML = days + " días";
-        }
-
-        countDays();
-    </script>
 </body>
 </html>
