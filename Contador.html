@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .widget-container {
+            background-color: #fcecec;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .title {
+            font-family: serif;
+            font-size: 24px;
+        }
+
+        .heart {
+            color: #d44f48;
+            font-size: 24px;
+        }
+
+        .days {
+            font-size: 36px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container">
+        <p class="title">Días Juntos</p>
+        <p class="heart">💕</p>
+        <p class="days" id="days-counter"></p>
+    </div>
+
+    <script>
+        function countDays() {
+            var startDate = new Date("July 19, 2019");
+            var currentDate = new Date();
+            var timeDiff = Math.abs(currentDate - startDate);
+            var days = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            document.getElementById("days-counter").innerHTML = days + " días";
+        }
+
+        countDays();
+    </script>
+</body>
+</html>
