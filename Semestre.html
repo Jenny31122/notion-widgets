@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semestre</title>
+    <style>
+        body {
+            font-variant-caps: all-petite-caps;
+        }
+        .widget {
+            padding: 20px;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            max-width: 80%;
+            margin: auto;
+            border: 3px solid #000000;
+            border-radius: 5px;
+            box-shadow: 2px 2px 1px 0px #000000;
+            text-align: center;
+        }
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        .date-range {
+            font-family: monospace;
+            font-size: 1.5em;
+        }
+        .countdown {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget">
+        <div class="title">II Semestre - 2024</div>
+        <div class="date-range">19 de agosto - 14 de diciembre</div>
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+    <script>
+        function calcularDiasRestantes() {
+            const fechaFinal = new Date("2024-12-14");
+            const hoy = new Date();
+            const diferencia = fechaFinal - hoy;
+            const diasRestantes = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+            
+            document.getElementById("countdown").innerText = `Faltan ${diasRestantes} días para finalizar el semestre.`;
+        }
+        
+        calcularDiasRestantes();
+    </script>
+</body>
+</html>
