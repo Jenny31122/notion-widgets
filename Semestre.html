@@ -23,35 +23,33 @@
             text-align: center;
         }
         .title {
-            font-size: 2.5em;
-            font-weight: bold;
+            font-size: 3em;
         }
         .date-range {
             font-family: monospace;
-            font-size: 1.5em;
+            font-size: 2em;
         }
         .countdown {
             font-size: 1.8em;
-            font-weight: bold;
-            margin-top: 10px;
+           margin-top: auto;
         }
     </style>
 </head>
 <body>
     <div class="widget">
-        <div class="title">II Semestre - 2024</div>
-        <div class="date-range">19 de agosto - 14 de diciembre</div>
+        <div class="title">I Semestre - 2025</div>
+        <div class="date-range">24 de marzo - 19 de julio</div>
         <div class="countdown" id="countdown"></div>
     </div>
 
     <script>
         function calcularDiasRestantes() {
-            const fechaFinal = new Date("2024-12-14");
+            const fechaFinal = new Date("2025-07-19");
             const hoy = new Date();
             const diferencia = fechaFinal - hoy;
             const diasRestantes = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
             
-            document.getElementById("countdown").innerText = `Faltan ${diasRestantes} días para finalizar el semestre.`;
+            document.getElementById("countdown").innerText = `Faltan ${diasRestantes} Días Restantes`;
         }
         
         calcularDiasRestantes();
