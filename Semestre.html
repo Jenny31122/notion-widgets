@@ -25,6 +25,9 @@
         .title {
             font-size: 3em;
         }
+        .year {
+            font-size: 0.85em; /* Reduce el tamaño de "2025" para que se vea equilibrado */
+        }
         .date-range {
             font-family: monospace;
             font-size: 2em;
@@ -32,13 +35,13 @@
         .countdown {
             font-family: monospace;
             font-size: 2em;
-           margin-top: auto;
+            margin-top: auto;
         }
     </style>
 </head>
 <body>
     <div class="widget">
-        <div class="title">I Semestre - 2025</div>
+        <div class="title">I Semestre - <span class="year">2025</span></div>
         <div class="date-range">24 de marzo - 19 de julio</div>
         <div class="countdown" id="countdown"></div>
     </div>
@@ -50,7 +53,7 @@
             const diferencia = fechaFinal - hoy;
             const diasRestantes = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
             
-            document.getElementById("countdown").innerText = `{diasRestantes} Días Restantes`;
+            document.getElementById("countdown").innerText = `Faltan ${diasRestantes} Días Restantes`;
         }
         
         calcularDiasRestantes();
