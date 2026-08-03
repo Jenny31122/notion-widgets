@@ -1,630 +1,373 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-
 <title>Horario de Clases</title>
-
 <style>
-
   @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Caveat:wght@600;700&display=swap');
 
-
   :root{
-
     --sage-deep:#4f6350;
-
     --sage-dark:#5f7160;
-
     --sage:#8a9a7a;
-
     --sage-light:#b7c4a3;
-
     --sage-pale:#dbe3cd;
-
     --cream:#f7f3e7;
-
     --gold:#d9a441;
-
     --gold-dark:#b9822f;
-
     --ink:#3c4a3a;
-
   }
-
 
   *{box-sizing:border-box;}
 
-
   body{
-
     margin:0;
-
     min-height:100vh;
-
     padding:38px 14px;
-
     display:flex;
-
     justify-content:center;
-
     align-items:flex-start;
-
     font-family:'Baloo 2',sans-serif;
-
     background-color:#c3cdae;
-
     background-image:
-
       linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.15) 75%),
-
       linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.15) 75%),
-
       linear-gradient(#c3cdae,#c3cdae);
-
     background-size:64px 64px, 64px 64px, 100% 100%;
-
     background-position:0 0, 32px 32px, 0 0;
-
   }
-
 
   .sheet{
-
     width:100%;
-
     max-width:780px;
-
     background:var(--cream);
-
     border-radius:30px;
-
     padding:0 0 26px;
-
     position:relative;
-
     box-shadow:0 16px 36px rgba(60,74,58,0.28);
-
     border:3px solid #ffffff;
-
     overflow:hidden;
-
   }
-
 
   /* ---- Header estilo widget de reloj ---- */
-
   .header{
-
     position:relative;
-
     background:linear-gradient(135deg,var(--sage-deep),var(--sage-dark));
-
     padding:26px 28px 30px;
-
     overflow:hidden;
-
   }
-
 
   .header h1{
-
     margin:0;
-
     font-family:'Baloo 2',sans-serif;
-
     font-weight:800;
-
     font-size:2.6rem;
-
     color:#eef2e6;
-
     letter-spacing:1px;
-
     line-height:1;
-
   }
-
 
   .header .sub{
-
     font-family:'Caveat',cursive;
-
     font-weight:700;
-
     font-size:1.7rem;
-
     color:var(--gold);
-
     display:block;
-
     margin-top:2px;
-
   }
-
 
   .header .date{
-
     display:block;
-
     margin-top:6px;
-
     font-size:0.88rem;
-
     color:#dbe3cd;
-
     letter-spacing:1px;
-
     font-weight:600;
-
   }
-
 
   .header-flowers{
-
     position:absolute;
-
     right:14px;
-
     bottom:-6px;
-
     width:150px;
-
     opacity:0.95;
-
   }
-
 
   /* ---- Diamante decorativo divisor ---- */
-
   .divider{
-
     display:flex;
-
     justify-content:center;
-
     gap:10px;
-
     margin:16px 0 10px;
-
   }
-
   .divider span{
-
     width:8px;height:8px;
-
     background:var(--gold);
-
     transform:rotate(45deg);
-
     opacity:0.7;
-
   }
-
 
   /* ---- Tabla ---- */
-
   .table-wrap{
-
     padding:0 22px;
-
   }
-
 
   table{
-
     width:100%;
-
     border-collapse:collapse;
-
     border-radius:18px;
-
     overflow:hidden;
-
     border:2px solid var(--sage-dark);
-
   }
-
 
   thead th{
-
     background:var(--sage-dark);
-
     color:#fff;
-
     font-family:'Baloo 2',sans-serif;
-
     font-weight:600;
-
     font-size:0.78rem;
-
     letter-spacing:1px;
-
     text-transform:uppercase;
-
     padding:12px 6px;
-
     text-align:center;
-
     border:1px solid rgba(255,255,255,0.22);
-
   }
-
 
   tbody th, tbody td{
-
     border:1px solid var(--sage-pale);
-
     padding:11px 6px;
-
     text-align:center;
-
     vertical-align:middle;
-
   }
-
 
   tbody th{
-
     background:var(--sage-pale);
-
     color:var(--sage-deep);
-
     font-weight:700;
-
     font-size:0.74rem;
-
     width:100px;
-
     letter-spacing:0.3px;
-
   }
-
 
   tbody td{
-
     background:#fffdf8;
-
   }
-
 
   .class-cell{
-
     background:#fdf3df;
-
   }
-
 
   .class-name{
-
     font-weight:700;
-
     color:var(--sage-deep);
-
     display:block;
-
     font-size:0.85rem;
-
   }
-
 
   .class-meta{
-
     display:block;
-
     font-size:0.68rem;
-
     color:var(--gold-dark);
-
     font-weight:600;
-
     margin-top:3px;
-
     letter-spacing:0.3px;
-
   }
-
 
   .footer-note{
-
     text-align:center;
-
     margin-top:20px;
-
     font-family:'Caveat',cursive;
-
     font-size:1.5rem;
-
     font-weight:700;
-
     color:var(--gold-dark);
-
   }
-
 
   @media (max-width:600px){
-
     .header h1{font-size:1.9rem;}
-
     .header .sub{font-size:1.3rem;}
-
     .header-flowers{width:100px;}
-
     thead th, tbody td, tbody th{font-size:0.6rem; padding:6px 3px;}
-
     .class-name{font-size:0.68rem;}
-
     .class-meta{font-size:0.55rem;}
-
     tbody th{width:64px;}
-
     .table-wrap{padding:0 12px;}
-
   }
-
 </style>
-
 </head>
-
 <body>
-
 
 <div class="sheet">
 
-
   <div class="header">
-
     <h1>Horario</h1>
-
     <span class="sub">de clases</span>
-
     <span class="date">Salón A-11 · Lunes a Viernes</span>
 
-
     <svg class="header-flowers" viewBox="0 0 150 90">
-
       <g fill="#eef2e6" opacity="0.9">
-
         <circle cx="105" cy="30" r="13"/>
-
         <circle cx="128" cy="42" r="13"/>
-
         <circle cx="105" cy="55" r="13"/>
-
         <circle cx="82" cy="42" r="13"/>
-
       </g>
-
       <circle cx="105" cy="42" r="10" fill="#d9a441"/>
-
       <g fill="#dbe3cd" opacity="0.9">
-
         <circle cx="35" cy="60" r="9"/>
-
         <circle cx="52" cy="70" r="9"/>
-
         <circle cx="35" cy="80" r="9"/>
-
         <circle cx="18" cy="70" r="9"/>
-
       </g>
-
       <circle cx="35" cy="70" r="7" fill="#d9a441"/>
-
     </svg>
-
   </div>
-
 
   <div class="divider">
-
     <span></span><span></span><span></span><span></span><span></span>
-
   </div>
-
 
   <div class="table-wrap">
-
     <table>
-
       <thead>
-
         <tr>
-
           <th>Horas</th>
-
           <th>Lunes</th>
-
           <th>Martes</th>
-
           <th>Miércoles</th>
-
           <th>Jueves</th>
-
           <th>Viernes</th>
-
         </tr>
-
       </thead>
-
       <tbody>
-
+        <!-- 08:50 – 09:40 am -->
         <tr>
-
-          <th>8:50 – 10:35 AM</th>
-
+          <th>08:50 – 09:40 am</th>
           <td></td>
-
           <td class="class-cell">
-
             <span class="class-name">Práctica Forense</span>
-
             <span class="class-meta">IVB D</span>
-
           </td>
-
           <td></td>
-
           <td></td>
-
           <td></td>
-
         </tr>
-
+        <!-- 09:45 – 10:35 am -->
         <tr>
-
-          <th>10:40 – 11:30 AM</th>
-
+          <th>09:45 – 10:35 am</th>
+          <td></td>
           <td class="class-cell">
-
             <span class="class-name">Práctica Forense</span>
-
             <span class="class-meta">IVB D</span>
-
           </td>
-
           <td></td>
-
           <td></td>
-
           <td></td>
-
-          <td></td>
-
         </tr>
-
+        <!-- 10:40 – 11:30 am -->
         <tr>
-
-          <th>1:25 – 2:15 PM</th>
-
-          <td></td>
-
+          <th>10:40 – 11:30 am</th>
           <td class="class-cell">
-
-            <span class="class-name">Bienes</span>
-
-            <span class="class-meta">IVA V</span>
-
+            <span class="class-name">Práctica Forense</span>
+            <span class="class-meta">IVB D</span>
           </td>
-
           <td></td>
-
           <td></td>
-
           <td></td>
-
+          <td></td>
         </tr>
-
+        <!-- 11:35 – 12:25 pm -->
         <tr>
-
-          <th>2:20 – 4:05 PM</th>
-
-          <td class="class-cell">
-
-            <span class="class-name">Derecho Laboral</span>
-
-            <span class="class-meta">IVA V</span>
-
-          </td>
-
+          <th>11:35 – 12:25 pm</th>
           <td></td>
-
           <td></td>
-
-          <td class="class-cell">
-
-            <span class="class-name">Bienes</span>
-
-            <span class="class-meta">IVA V</span>
-
-          </td>
-
           <td></td>
-
+          <td></td>
+          <td></td>
         </tr>
-
+        <!-- 12:30 – 01:20 pm -->
         <tr>
-
-          <th>2:20 – 3:10 PM</th>
-
+          <th>12:30 – 01:20 pm</th>
           <td></td>
-
           <td></td>
-
           <td></td>
-
           <td></td>
-
-          <td class="class-cell">
-
-            <span class="class-name">Derecho Laboral</span>
-
-            <span class="class-meta">IVA V</span>
-
-          </td>
-
+          <td></td>
         </tr>
-
+        <!-- 01:25 – 02:15 pm -->
         <tr>
-
-          <th>4:10 – 5:55 PM</th>
-
+          <th>01:25 – 02:15 pm</th>
           <td></td>
-
-          <td></td>
-
-          <td></td>
-
           <td class="class-cell">
-
-            <span class="class-name">Internacional Privado</span>
-
+            <span class="class-name">Der. Civil IX</span>
             <span class="class-meta">IVA V</span>
-
           </td>
-
           <td></td>
-
+          <td></td>
+          <td></td>
         </tr>
-
+        <!-- 02:20 – 03:10 pm -->
         <tr>
-
-          <th>5:05 – 5:55 PM</th>
-
+          <th>02:20 – 03:10 pm</th>
           <td class="class-cell">
-
-            <span class="class-name">Internacional Privado</span>
-
+            <span class="class-name">Der. de Trabajo IV</span>
             <span class="class-meta">IVA V</span>
-
           </td>
-
           <td></td>
-
           <td></td>
-
           <td></td>
-
-          <td></td>
-
+          <td class="class-cell">
+            <span class="class-name">Der. de Trabajo IV</span>
+            <span class="class-meta">IVA V</span>
+          </td>
         </tr>
-
+        <!-- 03:15 – 04:05 pm -->
+        <tr>
+          <th>03:15 – 04:05 pm</th>
+          <td class="class-cell">
+            <span class="class-name">Der. de Trabajo IV</span>
+            <span class="class-meta">IVA V</span>
+          </td>
+          <td></td>
+          <td></td>
+          <td class="class-cell">
+            <span class="class-name">Der. Civil IX</span>
+            <span class="class-meta">IVA V</span>
+          </td>
+          <td></td>
+        </tr>
+        <!-- 04:10 – 05:00 pm -->
+        <tr>
+          <th>04:10 – 05:00 pm</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="class-cell">
+            <span class="class-name">Der. Internacional Privado</span>
+            <span class="class-meta">IVA V</span>
+          </td>
+          <td></td>
+        </tr>
+        <!-- 05:05 – 05:55 pm -->
+        <tr>
+          <th>05:05 – 05:55 pm</th>
+          <td class="class-cell">
+            <span class="class-name">Der. Internacional Privado</span>
+            <span class="class-meta">IVA V</span>
+          </td>
+          <td></td>
+          <td></td>
+          <td class="class-cell">
+            <span class="class-name">Der. Internacional Privado</span>
+            <span class="class-meta">IVA V</span>
+          </td>
+          <td></td>
+        </tr>
       </tbody>
-
     </table>
-
   </div>
 
-
-  <div class="footer-note">🌼 Good Luck 🌼</div>
-
+  <div class="footer-note">🌼 Good Luck 🌼 </div>
 
 </div>
 
-
 </body>
-
 </html>
